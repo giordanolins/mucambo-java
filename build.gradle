@@ -1,0 +1,39 @@
+apply plugin: 'java'
+apply plugin: 'idea' // 'eclipse'
+apply plugin: 'war'
+apply plugin: 'jetty'
+
+group = "fuctura"
+archivesBaseName = 'MucamboJava'
+version = '0.1'
+
+repositories {
+    jcenter()
+    // mavenCentral()
+}
+
+dependencies {
+    compile 'jstl:jstl:1.2'
+    compile 'com.sun.faces:jsf-api:2.2.9'
+    compile 'com.sun.faces:jsf-impl:2.2.9'
+
+    // compile 'org.hibernate:hibernate-core:4.3.6.Final'
+    // compile 'mysql:mysql-connector-java:5.1.31'
+}
+
+task criarDiretorios << {
+    sourceSets.all { set ->
+        set.allSource.srcDirs.each { it.mkdirs() }
+    }
+
+    // Cria o diretório webapp
+    def webappDir = "$rootDir/src/main/webapp"
+    file(webappDir).mkdir()
+
+    // Cria o diretório WEB-INF
+    file(webappDir + "/WEB-INF").mkdir()
+}
+
+httpPort = 8080 //jetty start port
+stopPort = 8081 //jetty stop port
+stopKey = 'teste'
