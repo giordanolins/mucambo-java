@@ -1,0 +1,26 @@
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+    <title>Mucambo - Cadastro de Formas de Pagamento</title>
+</h:head>
+<h:body>
+    <h3>Cadastro de Formas de Pagamento</h3>
+    <h:form>
+        <h:inputText name="nome" required="true"
+                     binding="#{formaPagamentoController.inputNome}"
+                     requiredMessage="É necessário informar o nome da forma de pagamento." />
+        <h:commandButton value="Salvar" action="#{formaPagamentoController.salvar}" />
+    </h:form>
+
+    <h:dataTable value="#{formaPagamentoController.formasPagamento}" var="forma" rules="rows">
+        <!--<f:facet name="caption">Formas de Pagamento Cadastradas</f:facet>-->
+        <f:facet name="header">Formas de Pagamento</f:facet>
+        <!--<f:facet name="footer">Fim da listagem</f:facet>-->
+        <h:column>
+            <f:facet name="header">Nome</f:facet>#{forma.nome}
+        </h:column>
+    </h:dataTable>
+</h:body>
+</html>
